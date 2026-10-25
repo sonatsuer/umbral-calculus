@@ -1,0 +1,69 @@
+cabal-version:      3.4
+name:               umbral
+version:            0.1.0.0
+synopsis:           Rota's umbral calculus as a polymorphic language with dictionary passing
+description:
+  Expressions of the umbral calculus are Haskell functions of type
+  @forall m k u a. (Ring k, Ring a) => Umbral m k u a -> u -> k@, where the
+  ring structures are type classes and @Umbral@ is a dictionary of the umbral
+  operations, passed explicitly: the inclusions, the evaluation and an
+  allocator of fresh umbrae. Expressions that
+  allocate express Rota and Taylor's auxiliary umbrae, including umbral
+  composition and the compositional inverse.
+license:            MIT
+author:             Sonat Suer
+maintainer:         Sonat Suer
+category:           Math
+build-type:         Simple
+
+common shared
+  default-language: GHC2021
+  ghc-options:
+    -Wall
+    -Wtabs
+    -Wincomplete-record-updates
+    -Wincomplete-uni-patterns
+    -Wredundant-constraints
+  build-depends:
+    , base
+    , containers
+    , text
+
+library umbral-lib
+  import:          shared
+  hs-source-dirs:  lib
+  build-depends:   transformers
+  exposed-modules:
+    Algebra.Binomial
+    Algebra.Modular
+    Algebra.Polynomial
+    Algebra.Ring
+    Control.Monad.Fresh
+    Data.Memo
+    Data.Stream
+    Probability.Random
+    Probability.Space
+
+library
+  import:          shared
+  hs-source-dirs:  src
+  build-depends:   umbral:umbral-lib
+  exposed-modules:
+    Umbral.Auxiliary
+    Umbral.Language
+    Umbral.Examples
+    Umbral.Moment
+    Umbral.Name
+    Umbral.Probability
+    Umbral.Sequences
+    Umbral.Showcase
+    Umbral.Symbolic
+
+test-suite umbral-checks
+  import:          shared
+  type:            exitcode-stdio-1.0
+  hs-source-dirs:  test
+  main-is:         Main.hs
+  build-depends:
+    , umbral
+    , umbral:umbral-lib

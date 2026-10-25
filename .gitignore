@@ -1,0 +1,44 @@
+# Lake build artifacts and fetched dependencies
+/.lake/
+
+# Lean / editor leftovers
+*.olean
+*.ilean
+*.trace
+*.hash
+
+# Editors and OS
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
+
+# LaTeX intermediates. The built PDF is tracked; everything latexmk,
+# bibtex and friends regenerate is not.
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# `*.log` would also swallow build logs elsewhere, so scope it.
+docs/*.log
+
+# Haskell build artifacts
+/haskell/dist-newstyle/
+
+# Claude Code settings
+/.claude/

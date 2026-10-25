@@ -1,0 +1,20 @@
+name = "freethms"
+version = "0.1.0"
+keywords = ["parametricity", "free-theorems", "logical-relations"]
+defaultTargets = ["FreeThms"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+autoImplicit = false
+
+# Mathlib is needed for `MvPolynomial` in the moment model. `FreeThms/Core` is
+# Mathlib-free by design.
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.33.1"
+
+[[lean_lib]]
+name = "FreeThms"
